@@ -1,14 +1,26 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Deck : MonoBehaviour
 {
-    public Card[] deck = new Card[52];
+    public List<Card> deck = new List<Card>();
 
     private void Start()
     {
-        // add cards to deck
+        foreach (var suit in Enum.GetValues(typeof(Card.Suit)))
+        {
+            foreach (var num in Enum.GetValues(typeof(Card.Number)))
+            {
+                deck.Add(new Card((Card.Suit)suit, (Card.Number)num));
+            }
+        }
+
+        foreach (var card in deck)
+        {
+            Debug.Log("Card: " + card.num + " of " + card.suit);
+        }
     }
 
     public Card[] ShuffleDeck(Card[] deck)

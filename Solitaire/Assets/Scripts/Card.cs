@@ -26,9 +26,10 @@ public class Card : MonoBehaviour
         Seven = 7,
         Eight = 8,
         Nine = 9,
-        Jack = 10,
-        Queen = 11,
-        King = 12
+        Ten = 10,
+        Jack = 11,
+        Queen = 12,
+        King = 13
     }
 
     public Suit suit;
