@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     // new game
-    // keeps track of score and time to complete
+    // keeps track of score and time to complete and num of moves
     // undo
     // hint
     // deal 1 card or 3
