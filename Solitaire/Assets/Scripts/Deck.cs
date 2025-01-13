@@ -5,24 +5,21 @@ using UnityEngine;
 
 public class Deck : MonoBehaviour
 {
-    //public List<Card> deck = new List<Card>();
+    public string[] suits = { "S", "H", "C", "D" };
+    public string[] nums = {"A", "1", "2", "3",  "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K" };
 
-    private void Start()
+    public List<string> GenerateDeck()
     {
-    }
-
-    public List<Card> GenerateDeck()
-    {
-        var cards = new List<Card>();
-        foreach (var suit in Enum.GetValues(typeof(Card.Suit)))
+        List<string> newDeck = new();
+        foreach (string s in suits)
         {
-            foreach (var num in Enum.GetValues(typeof(Card.Number)))
+            foreach (string n in nums)
             {
-                cards.Add(new Card((Card.Suit)suit, (Card.Number)num));
+                newDeck.Add(s + n);
             }
         }
 
-        return cards;
+        return newDeck;
     }
 
     public void ShuffleDeck<T>(List<T> list)
@@ -40,8 +37,9 @@ public class Deck : MonoBehaviour
 
     }
 
-    public void Deal(Card[] deck)
+    public void Deal(List<string> deck)
     {
         // deal out the cards on the board
+
     }
 }
