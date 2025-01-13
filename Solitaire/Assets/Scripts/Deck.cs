@@ -9,24 +9,48 @@ public class Deck : MonoBehaviour
 
     private void Start()
     {
+        var deck = GenerateDeck();
+        ShuffleDeck(deck);
+
+        foreach (var card in deck)
+        {
+            Debug.Log("Card " + card.num + " of " + card.suit);
+        }
+    }
+
+    public static List<Card> GenerateDeck()
+    {
+        var cards = new List<Card>();
         foreach (var suit in Enum.GetValues(typeof(Card.Suit)))
         {
             foreach (var num in Enum.GetValues(typeof(Card.Number)))
             {
-                deck.Add(new Card((Card.Suit)suit, (Card.Number)num));
+                cards.Add(new Card((Card.Suit)suit, (Card.Number)num));
             }
         }
 
-        foreach (var card in deck)
+/*        foreach (var card in cards)
         {
-            Debug.Log("Card: " + card.num + " of " + card.suit);
-        }
+            Debug.Log("Card " + card.num + " of " + card.suit);
+        }*/
+
+        return cards;
     }
 
-    public Card[] ShuffleDeck(Card[] deck)
+    public void ShuffleDeck<T>(List<T> list)
     {
         // shuffle cards in deck, then return shuffled deck
-        return deck;
+        System.Random rand = new System.Random();
+        int n = list.Count;
+        while (n > 1)
+        {
+            int k = rand.Next(n);
+            n--;
+            T temp = list[k];
+            list[k] = list[n];
+            list[n] = temp;
+        }
+
     }
 
     public void Deal(Card[] deck)
