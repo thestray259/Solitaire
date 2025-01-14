@@ -15,12 +15,14 @@ public class GameManager : MonoBehaviour
     public Sprite[] cardFaces;
     public List<string> cards;
 
-    public Deck deck;
+    public string[] suits = { "S", "H", "C", "D" };
+    public string[] nums = { "A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K" };
 
     void Start()
     {
-        cards = deck.GenerateDeck();
-        deck.ShuffleDeck(cards);
+        cards = GenerateDeck();
+        ShuffleDeck(cards);
+        Deal(cards);
 
 /*        foreach (var card in cards)
         {
@@ -33,6 +35,35 @@ public class GameManager : MonoBehaviour
         
     }
 
+    public List<string> GenerateDeck()
+    {
+        List<string> newDeck = new();
+        foreach (string s in suits)
+        {
+            foreach (string n in nums)
+            {
+                newDeck.Add(n + s);
+            }
+        }
+
+        return newDeck;
+    }
+
+    public void ShuffleDeck<T>(List<T> list)
+    {
+        System.Random rand = new System.Random();
+        int n = list.Count;
+        while (n > 1)
+        {
+            int k = rand.Next(n);
+            n--;
+            T temp = list[k];
+            list[k] = list[n];
+            list[n] = temp;
+        }
+
+    }
+
     public void Deal(List<string> deck)
     {
         // deal out the cards on the board
@@ -41,6 +72,11 @@ public class GameManager : MonoBehaviour
         foreach (string card in deck)
         {
             GameObject newCard = Instantiate(cardPrefab, new Vector3(transform.position.x, transform.position.y - yOffset, transform.position.z - zOffset), Quaternion.identity);
+            newCard.name = card;
+            newCard.GetComponent<Selectable>().faceUp = true;
+
+            yOffset += 9f;
+            zOffset += 0.03f;
         }
     }
 }

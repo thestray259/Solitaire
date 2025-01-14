@@ -4180,7 +4180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cba123d317eb6f4cb8fbde635b23277, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardPrefab: {fileID: 0}
+  cardPrefab: {fileID: 6416826018339663513, guid: 9c320255bd130164dbaeafb51a2398e4, type: 3}
   cardFaces:
   - {fileID: 21300000, guid: 74567493f86a9d640a897bb8af7419a6, type: 3}
   - {fileID: 21300000, guid: b2baa3a3038ce2040b97ecd8a1d46631, type: 3}
@@ -4226,16 +4226,34 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 3a9ebefcebf9b364eb5833928cc7c208, type: 3}
   - {fileID: 21300000, guid: 4024520402cb2854b96513271ef50842, type: 3}
   - {fileID: 21300000, guid: 37d11a52872a1ba41bc1b97fa531e520, type: 3}
-  - {fileID: 21300000, guid: f1390dffd0a57ed46a8932bb4ae204c6, type: 3}
-  - {fileID: 21300000, guid: 823876c015c778b45bec74b9f1cad84f, type: 3}
-  - {fileID: 21300000, guid: feefe30cf5eb83144ae408f0c96d8ebf, type: 3}
-  - {fileID: 21300000, guid: 14ef9d96499ebc84683daa309696f4f7, type: 3}
   - {fileID: 21300000, guid: 535da8b56ba0a6d438dc38296fa94aff, type: 3}
   - {fileID: 21300000, guid: 5f5306e2ea6f6464d8f1ce7e3cca23fe, type: 3}
   - {fileID: 21300000, guid: 1b5474e8b2b245c43bf17cd8e3240e37, type: 3}
   - {fileID: 21300000, guid: a95def1a18ae3904e91ddc7bdc70985a, type: 3}
+  - {fileID: 21300000, guid: f1390dffd0a57ed46a8932bb4ae204c6, type: 3}
+  - {fileID: 21300000, guid: 823876c015c778b45bec74b9f1cad84f, type: 3}
+  - {fileID: 21300000, guid: feefe30cf5eb83144ae408f0c96d8ebf, type: 3}
+  - {fileID: 21300000, guid: 14ef9d96499ebc84683daa309696f4f7, type: 3}
   cards: []
-  deck: {fileID: 0}
+  suits:
+  - S
+  - H
+  - C
+  - D
+  nums:
+  - A
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  - 8
+  - 9
+  - 10
+  - J
+  - Q
+  - K
 --- !u!1 &1866171704
 GameObject:
   m_ObjectHideFlags: 0

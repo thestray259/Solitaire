@@ -13,24 +13,13 @@ public class UpdateSprite : MonoBehaviour
 
     void Start()
     {
-        List<string> deck = gameManager.deck.GenerateDeck();
         gameManager = FindObjectOfType<GameManager>();
-
-        int i = 0;
-        foreach (string card in deck)
-        {
-            if (this.name == card)
-            {
-                cardFace = gameManager.cardFaces[i];
-                break;
-            }
-            i++;
-        }
         spriteRenderer = GetComponent<SpriteRenderer>();
         selectable = GetComponent<Selectable>();
+
+        GiveFaces();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (selectable.faceUp == true)
@@ -40,6 +29,25 @@ public class UpdateSprite : MonoBehaviour
         else
         {
             spriteRenderer.sprite = cardBack;
+        }
+    }
+
+    public void GiveFaces()
+    {
+        List<string> d = new List<string>() { "2C", "2D", "2H", "2S", "3C", "3D", "3H", "3S", "4C", "4D", "4H", "4S", "5C", "5D", "5H", "5S",
+                                              "6C", "6D", "6H", "6S", "7C", "7D", "7H", "7S", "8C", "8D", "8H", "8S", "9C", "9D", "9H", "9S",
+                                              "10C", "10D", "10H", "10S", "AC", "AD", "AH", "AS", "JC", "JD", "JH", "JS", 
+                                              "QC", "QD", "QH", "QS", "KC", "KD", "KH", "KS"};
+
+        int i = 0;
+        foreach (string card in d)
+        {
+            if (this.name == card)
+            {
+                cardFace = gameManager.cardFaces[i];
+                break;
+            }
+            i++;
         }
     }
 }
