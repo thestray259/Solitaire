@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,28 +12,52 @@ public class GameManager : MonoBehaviour
     // deal 1 card or 3
 
     [SerializeField] GameObject cardPrefab;
+    public GameObject[] bottomPos;
+    public GameObject[] topPos;
 
     public Sprite[] cardFaces;
     public List<string> cards;
 
     public string[] suits = { "S", "H", "C", "D" };
     public string[] nums = { "A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K" };
+    public List<string>[] bottoms;
+    public List<string>[] tops;
+
+    // card piles
+    private List<string> bottom1 = new List<string>();
+    private List<string> bottom2 = new List<string>();
+    private List<string> bottom3 = new List<string>();
+    private List<string> bottom4 = new List<string>();
+    private List<string> bottom5 = new List<string>();
+    private List<string> bottom6 = new List<string>();
+    private List<string> bottom7 = new List<string>();
 
     void Start()
     {
-        cards = GenerateDeck();
-        ShuffleDeck(cards);
-        Deal(cards);
+        bottoms = new List<string>[] { bottom1, bottom2, bottom3, bottom4, bottom5, bottom6, bottom7 };
 
-/*        foreach (var card in cards)
-        {
-            Debug.Log("Card " + card.num + " of " + card.suit);
-        }*/
+        PlayCards();
+
+
     }
 
     void Update()
     {
         
+    }
+
+    public void PlayCards()
+    {
+        cards = GenerateDeck();
+        ShuffleDeck(cards);
+
+        Sort();
+        StartCoroutine(Deal());
+
+        /*        foreach (var card in cards)
+        {
+            Debug.Log("Card " + card.num + " of " + card.suit);
+        }*/
     }
 
     public List<string> GenerateDeck()
@@ -64,19 +89,37 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public void Deal(List<string> deck)
+    IEnumerator Deal()
     {
-        // deal out the cards on the board
-        float yOffset = 0;
-        float zOffset = 0.03f;
-        foreach (string card in deck)
+        for (int i = 0; i < 7; i++)
         {
-            GameObject newCard = Instantiate(cardPrefab, new Vector3(transform.position.x, transform.position.y - yOffset, transform.position.z - zOffset), Quaternion.identity);
-            newCard.name = card;
-            newCard.GetComponent<Selectable>().faceUp = true;
+            float yOffset = 0;
+            float zOffset = 0.03f;
+            foreach (string card in bottoms[i])
+            {
+                yield return new WaitForSeconds(0.1f);
+                GameObject newCard = Instantiate(cardPrefab, new Vector3(bottomPos[i].transform.position.x, bottomPos[i].transform.position.y - yOffset, bottomPos[i].transform.position.z - zOffset), Quaternion.identity, bottomPos[i].transform);
+                newCard.name = card;
+                if (card == bottoms[i][bottoms[i].Count - 1])
+                {
+                    newCard.GetComponent<Selectable>().faceUp = true;
+                }
 
-            yOffset += 9f;
-            zOffset += 0.03f;
+                yOffset += 0.3f;
+                zOffset += 0.03f;
+            }
+        }
+    }
+
+    public void Sort()
+    {
+        for (int i = 0; i < 7; i++)
+        {
+            for (int j = i; j < 7; j++)
+            {
+                bottoms[j].Add(cards.Last<string>());
+                cards.RemoveAt(cards.Count - 1);
+            }
         }
     }
 }

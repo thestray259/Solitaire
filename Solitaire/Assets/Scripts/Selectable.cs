@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Selectable : MonoBehaviour
 {
-    public bool faceUp = true;
+    public bool faceUp = false;
 
     void Start()
     {

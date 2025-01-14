@@ -111,4 +111,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f4ddd18377c5a143b334996e513949d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cardFace: {fileID: 0}
   cardBack: {fileID: 21300000, guid: 6e585d3080c1def47b51dab1034919d0, type: 3}
